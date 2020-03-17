@@ -6,10 +6,11 @@ city = 'Kraków';
 zip = '30-781';
 country = 'Poland';
 
-zz
+
 /* 
 dr Mateusz Kubicki
 ul. Długa 15
 30-781 Kraków
 POLAND
 */
+
