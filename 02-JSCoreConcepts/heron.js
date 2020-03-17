@@ -5,7 +5,7 @@ c = 5;
 h = 7
 
 // Pole trókąta o bokach ..., ... oraz ... wynosi ... .
+p = (b+c+h)/2
+let a = () => p*Math.sqrt((p-b)*(p-c)*(p-h)) ;
 
-let a = () => "aaaa";
-
-console.log( a() );
+console.log(`Pole trójkąta o bokach ${b}, ${c} oraz ${h} wynosi ${a()}.`);

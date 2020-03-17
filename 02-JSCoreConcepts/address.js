@@ -6,7 +6,6 @@ city = 'Kraków';
 zip = '30-781';
 country = 'Poland';
 
-
 /* 
 dr Mateusz Kubicki
 ul. Długa 15
@@ -14,3 +13,10 @@ ul. Długa 15
 POLAND
 */
 
+console.log(title + ' ' + name + ' ' + surname + ' ' + '\n' + "ul. " + street + " " + '\n' + zip + " " + city + '\n' + country + '\n')
+
+
+console.log(`${title} ${name} ${surname}
+ul. ${street} 
+${zip} ${city}
+${country}`);
