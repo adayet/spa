@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function() {
+
+var dataPoints = [];
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title: {
+		text: "Ostatnie 10 cen złota"
+	},
+	axisY: {
+		title: "Cena",
+		titleFontSize: 24
+	},
+	data: [{
+		type: "area",
+		yValueFormatString: "###.## zł",
+		dataPoints: dataPoints
+	}]
+});
+
+function addData(data) {
+	for (var i = 0; i < data.length; i++) {
+		dataPoints.push({
+			x: new Date(data[i].data),
+			y: data[i].cena
+		});
+	}
+	chart.render();
+
+}
+
+$.getJSON("https://api.nbp.pl/api/cenyzlota/last/10/?format=json", addData);
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 400px; width: 80%;"></div>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

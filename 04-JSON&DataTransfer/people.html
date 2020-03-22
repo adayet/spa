@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>People</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>People</h1>
+		<p>Click the button to show personal data of people</p>
+		<input type="button" value="Display personsal data" onclick="connect()" >
+		<p id="personalData"></p>
+
+		<script>
+			function connect() {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(xhr.responseText);
+                    for (i=0; i<myObj.length; i++){
+                    document.getElementById("personalData").innerHTML += [i+1]+ ". " + myObj[i].name + " " + myObj[i].surname.toUpperCase() + ", " + myObj[i].country + "</br>" ;
+				    }   
+                } 
+            }  
+			xhr.open('GET', 'people.json');
+			xhr.send();
+			}
+		</script>
+
+	</body>
+</html>

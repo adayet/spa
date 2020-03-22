@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script>
+
+$(document).ready(function() {
+    $('#example').dataTable( {
+  	ajax: {
+    url: 'people.json',
+	dataSrc: '' },
+	columns: [
+		{data: 'name' },
+		{data: 'surname' },
+		{data: 'age' },
+		{data: 'country' },
+		{data: 'email' }
+	]
+} );
+} );
+
+</script>
+</head>
+<body>
+	<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>Country.</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>Country.</th>
+                <th>Email</th>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

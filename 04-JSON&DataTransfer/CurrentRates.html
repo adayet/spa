@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NBP</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Aktualne ceny USD, EUR, GBP</h1>
+		<p id="rates"></p>
+
+		<script>
+        var USD = 'https://api.nbp.pl/api/exchangerates/rates/c/usd/?format=json'
+        var EUR = 'https://api.nbp.pl/api/exchangerates/rates/c/eur/?format=json'
+        var GBP = 'https://api.nbp.pl/api/exchangerates/rates/c/gbp/?format=json'
+
+        var URL = [USD, EUR, GBP];
+
+        for (i = 0; i < URL.length; i++) {
+        var method = 'GET';
+            request(URL[i]);
+        }
+
+        function request(url) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                var myObj = JSON.parse(xhr.responseText);
+                document.getElementById("rates").innerHTML += '<br />Waluta: ' + myObj.currency + '</br> '+ 'Kod: ' + myObj.code + ' </br> ' + 'Cena sprzedazy: ' + myObj.rates[0].ask +' </br> ' + 'Cena kupna: ' + myObj.rates[0].bid + '<br />';
+                }
+            }
+            xhr.open(method, url);
+            xhr.send();
+        }
+		</script>
+
+	</body>
+</html>
