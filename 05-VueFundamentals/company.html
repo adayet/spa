@@ -1,9 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		.cardBox {
+			border: 1px solid;
+			max-width: 300px;
+			text-align: center;
+			min-width: 200px;
+		}
+		
+		.info {
+			line-height: 6px;
+		}
+	</style>
 </head>
 <body>
+
+	 <div id="app">
+		<div class="cardBox">
+			<p class="info"> <b>{{ company.toUpperCase() }}</b> </p>
+			<p class="info"> {{ address }} </p>
+			<p class="info"> {{ postcode }} {{ city }} </p>
+			<p class="info">tel. {{ landline }}, {{ mobile }} </p>
+			<a class="info" v-bind:href="web"> {{ web }} </p>
+
+		</div>
+	</div>
+
   <script>
     var app = new Vue({
       el: '#app',

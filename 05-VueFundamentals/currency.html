@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+
+		table,td,th {
+		  border-collapse:collapse;
+		  border: 1px solid #000000;
+		}
+		
+		table thead {
+			text-align:left;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+		<table width=1000>
+		  <thead>
+			  <th>Currency</th>
+			  <th>Code</th>
+			  <th>Mid</th>
+		  </thead>
+		  <tbody>
+			<tr v-for="curr in currencies">
+				<td>{{ curr.currency }}</td>
+				<td>{{ curr.code }}</td>
+				<td>{{ curr.mid }}</td>
+			</tr>
+		  </body>
+		</table>
+	</div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        currencies: []
+      },
+	 mounted () {
+		  
+		  
+		  var self = this;
+		  const xhr = new XMLHttpRequest();
+		
+			xhr.addEventListener("load",  function() {
+				if (xhr.status === 200) {
+					self.currencies = JSON.parse(xhr.response)[0].rates;
+				}
+			});
+
+			xhr.open("GET", "https://api.nbp.pl/api/exchangerates/tables/a?format=json", true);
+			xhr.send();
+	  }
+    });
+  </script>
+
+</body>
+</html>

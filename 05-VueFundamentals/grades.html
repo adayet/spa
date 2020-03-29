@@ -7,28 +7,20 @@
 
 	<div id="app">
 	<p>DO WYKONANIA </p>
-		<ol>
-			<li v-for="item in sortedArray"> 
-				{{ item }}
-			</li>
-		</ol>
+		<p>Student’s grades: {{ grades.join(" ") }}</p>
+		<p>Average grade: {{ avgGrade }} </p>
 	</div>
 
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        todo: [
-          'Purchase two tickets to cinema',
-          'Feed cat',
-          'Pay cable bill',
-          'Go shopping'
-		  ]
+        grades: [4,5,3,2,3,5,5,2,4]
       },
 	  computed: {
-		  sortedArray: function() {
-		    return this.todo.sort();
-	    }
+		avgGrade: function() {
+			return  Math.floor(this.grades.reduce((a, b) => a + b, 0) / this.grades.length * 100) / 100;
+		}
 	  }
     });
   </script>

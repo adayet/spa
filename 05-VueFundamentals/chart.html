@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 </head>
 <body>
+
+<canvas id="myChart" width="1000" height="400"></canvas>
+<div id="app">
+
+</div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -30,8 +36,44 @@
             popularity: 7.37
           }
         ] 
-      }
+      }, 
+	  computed: {
+		getLanguages: function() {
+			return this.films.map(a => a.language);
+	
+		},
+		getPopularity: function() {
+			return this.films.map(a => a.popularity);		}
+	  }
     });
+	
+	console.log(app.getLanguages);
+	
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var config = 
+		{
+			type: 'bar',
+			data: {
+				labels: app.getLanguages,
+				datasets: [{
+					label: '# of Votes',
+					data: app.getPopularity,
+					backgroundColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+					],
+					borderWidth: 1
+				}]
+			}
+		};
+		
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, config);
+
   </script>
 </body>
 </html>
