@@ -8,12 +8,10 @@
     <h1>TO DO APP</h1>
     <span>To do: </span>
     <input type="text" v-model="todo">
-    <button type="button" @click="add()">Add</button>
+    <button type="button" @click="add()" >Add</button>
     <h3>To Do List</h3>
     <ol>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
+      <li v-for="action in todos" @dblclick="remove()"> {{ action }} </li>
     </ol>
   </div>
   <script>
@@ -21,11 +19,14 @@
       el: '#app',
       data: {
         todo: '',
-        todos: []
+        todos: [],
       },
       methods: {
         add: function() {
           this.todos.push(this.todo);
+        },
+        remove: function(index) {
+          this.todos.splice(index,1);
         }
       }
     });

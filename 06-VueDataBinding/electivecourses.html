@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  
+  <h1>Przedmioty do wyboru</h1>
+  <div id="app">
+    <input type="checkbox" id="psi" value="psi" v-model="subjects">
+    <label for="psi">Programowanie Sztucznej Inteligencji</label></br>
+    <input type="checkbox" id="psychologia" value="psychologia" v-model="subjects">
+    <label for="psychologia">Psychologia</label></br>
+    <input type="checkbox" id="med" value="med" v-model="subjects">
+    <label for="med">Metody Eksploracji Danych</label></br>
+    <input type="checkbox" id="comarch" value="comarch" v-model="subjects">
+    <label for="comarch">Zajęcia praktyczne - Comarch</label></br>
+    <input type="checkbox" id="spa" value="spa" v-model="subjects">
+    <label for="spa">SPA - Single Page Application</label>
+    <h3>Ilość wybranych przedmiotów: {{ subjects.length }}</h3>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+          subjects: [] 
+      },
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>CV</h1>
+    <span>Imię: </span>
+    <input type="text" v-model="name"></br>
+    <span>Nazwisko: </span>
+    <input type="text" v-model="surname"></br>
+    <span>Wiek:</span>
+    <input type="number" v-model.number="age"></br>
+    <span>Płeć:</span>
+    <input type="radio" id="female" value="female" v-model="gender">
+    <label for="female">Kobieta</label>
+    <input type="radio" id="male" value="male" v-model="gender">
+    <label for="male">Mężczyzna</label></br>
+    <span>Wykształcenie:</span>
+    <select v-model="education">
+        <opiton disabled value="">Wybierz...</opiton>
+        <option>Brak</option>
+        <option>Podstawowe</option>
+        <option>Średnie</option>
+        <option>Wyższe</option>
+    </select></br>
+    <span>Umiejętności:</span>
+    <input type="checkbox" id="computer" value="computer" v-model="skills">
+    <label for="computer">Obsługa komputera</label>
+    <input type="checkbox" id="driving" value="driving" v-model="skills">
+    <label for="driving">Prawo jazdy</label>
+    <input type="checkbox" id="creativity" value="creativity" v-model="skills">
+    <label for="creativity">Kreatywność</label>
+    <input type="checkbox" id="teamwork" value="teamwork" v-model="skills">
+    <label for="teamwork">Praca w zespole</label>
+
+    <p>
+        <button @click="persist">Zapisz</button>
+    </p>
+    <p>
+        <button @click="read">Czytaj</button>
+    </p>
+
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        surname: '',
+        age: '',
+        gender: '',
+        education: '',
+        skills: []
+      },
+      mounted() {
+          if (localStorage.name) {
+              this.name = localStorage.name;
+          }
+          if (localStorage.surname) {
+              this.surname = localStorage.surname;
+          }
+          if (localStorage.age) {
+              this.age = localStorage.age;
+          }
+          if (localStorage.gender) {
+              this.gender = localStorage.gender;
+          }
+          if (localStorage.education) {
+              this.education = localStorage.education;
+          }
+          if (localStorage.skills) {
+              this.skills = localStorage.skills;
+          }
+      },
+      methods: {
+        persist() {
+            localStorage.name = this.name;
+            localStorage.surname = this.surname;
+            localStorage.age = this.age;
+            localStorage.gender = this.gender;
+            localStorage.education = this.education;
+            localStorage.skills = this.skills;
+        },
+        read: function ($event) {
+            return alert(`
+            ${localStorage.name} ${localStorage.surname}
+            ${localStorage.age}, ${localStorage.gender}
+            ${localStorage.education}, ${localStorage.skills}`);
+        }
+      }
+    });
+
+  </script>
+</body>
+</html>
